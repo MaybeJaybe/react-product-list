@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import data, { categoriesWithCounts, namesAndCategories } from './data';
 import './App.css';
-import { names } from 'debug';
 
 function App() {
   return (
@@ -9,11 +7,24 @@ function App() {
       <header className="App-header">
         {namesAndCategories.map(obj => {
           return (
-            <button>
-              {obj.name}
-            </button>
+            <div className="Category-buttons">
+              <button>
+                {obj.name}
+              </button>
+            </div>
           )
         })}
+        <div className="Products">
+          {data.map(obj => {
+            return (
+              <div className="Product">
+                <h1>{obj.name}</h1>
+                <h2>{obj.category}</h2>
+                <h3>{obj.price}</h3>
+              </div>
+            )
+          })}
+        </div>
       </header>
     </div>
   );
