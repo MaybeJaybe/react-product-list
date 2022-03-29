@@ -3,8 +3,7 @@ import data from './data.json';
 // get list of all categories
 const allCategories = data.map(obj => obj.category);
 // make categories list a list of unique values
-const categorySet = new Set(allCategories)
-const categoriesUnique = Array.from(categorySet)
+const uniqueCategories = Array.from(new Set(allCategories))
 // make object whose keys are the names of categories
 // and whose values are the number of times that category appears
 const categoriesWithCounts = allCategories.reduce((obj, cat) => {
@@ -19,10 +18,12 @@ const categoriesWithCounts = allCategories.reduce((obj, cat) => {
   return obj
 }, {})
 // use reduce to make an array of objects that have name and count
-const namesAndCategories = categoriesUnique.map(name => {
+const namesAndCategories = uniqueCategories.map(name => {
   // return obj here with name and count
   return {name, count: categoriesWithCounts[name]}
 })
 
+namesAndCategories.push({name: 'All', count: data.length})
+
 export default data
-export { categoriesWithCounts, namesAndCategories }
+export { allCategories, uniqueCategories, categoriesWithCounts, namesAndCategories }

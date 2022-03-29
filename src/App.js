@@ -1,33 +1,26 @@
-import data, { categoriesWithCounts, namesAndCategories } from './data';
+import data, { allCategories, uniqueCategories, categoriesWithCounts, namesAndCategories } from './data';
+import { useState } from 'react';
+import CategoryList from './Components/CategoryList';
+import ProductList from './Components/ProductList';
 import './App.css';
 
 function App() {
+  const[category, setCategory] = useState('All')
+
   return (
     <div className="App">
-      <header className="App-header">
-        {namesAndCategories.map(obj => {
-          return (
-            <div className="Category-buttons">
-              <button>
-                {obj.name}
-              </button>
-            </div>
-          )
-        })}
-        <div className="Products">
-          {data.map(obj => {
-            return (
-              <div className="Product">
-                <h1>{obj.name}</h1>
-                <h2>{obj.category}</h2>
-                <h3>{obj.price}</h3>
-              </div>
-            )
-          })}
-        </div>
-      </header>
+      <h1>Shop Products</h1>
+      <p>Select Categories: ({uniqueCategories.length})</p>
+
+      <CategoryList 
+        category={category} 
+        onClick={newCategory => setCategory(newCategory)}
+      />
+
+      <ProductList 
+      category={category}
+      />
     </div>
   );
 }
-
 export default App;
